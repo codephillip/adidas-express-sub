@@ -1,11 +1,11 @@
 const swaggerDocument = {
   swagger: '2.0',
-  basePath: '/',
+  basePath: '/api/v1/',
   schemes: ['http'],
   consumes: ['application/json'],
   produces: ['application/json'],
   paths: {
-    '/subscription/': {
+    '/subscriptions/': {
       get: {
         summary: 'Lists all the subscriptions',
         tags: ['subscription'],
@@ -43,7 +43,7 @@ const swaggerDocument = {
         },
       },
     },
-    '/subscription/{id}': {
+    '/subscriptions/{id}': {
       get: {
         summary: 'Gets a subscription by its primary key',
         tags: ['subscription'],
@@ -141,7 +141,7 @@ const swaggerDocument = {
       },
     },
 
-    '/campaign/': {
+    '/api/v1/campaigns/': {
       get: {
         summary: 'Lists all the campaigns',
         tags: ['campaign'],
@@ -179,7 +179,7 @@ const swaggerDocument = {
         },
       },
     },
-    '/campaign/{id}': {
+    '/campaigns/{id}': {
       get: {
         summary: 'Gets a campaign by its primary key',
         tags: ['campaign'],

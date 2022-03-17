@@ -5,7 +5,7 @@ import { app } from 'server/app';
 import { buildSubscription, buildCampaign, createSubscription, createCampaign } from './factories';
 import { Database, setUpRoutesAndMiddlewares } from './utils';
 
-const ENDPOINT = '/subscription';
+const ENDPOINT = 'api/v1/subscriptions';
 
 describe('Subscription tests', () => {
   beforeAll(async () => {

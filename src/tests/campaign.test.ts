@@ -5,7 +5,7 @@ import { app } from 'server/app';
 import { buildCampaign, createCampaign } from './factories';
 import { Database, setUpRoutesAndMiddlewares } from './utils';
 
-const ENDPOINT = '/campaign';
+const ENDPOINT = '/api/v1/campaigns';
 
 describe('Campaign tests', () => {
   beforeAll(async () => {

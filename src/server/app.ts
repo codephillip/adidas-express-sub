@@ -19,7 +19,7 @@ const app = express();
 
 function setUpAPIRoutes() {
   // Swagger
-  app.use('/swagger', swaggerUi.serveFiles(swaggerDocument), swaggerUi.setup(swaggerDocument));
+  app.use('/api/v1/subscriptionSwagger', swaggerUi.serveFiles(swaggerDocument), swaggerUi.setup(swaggerDocument));
 
   // Middlewares
   app.use(logger('dev'));
@@ -29,9 +29,9 @@ function setUpAPIRoutes() {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(initResLocalsHandler);
 
-  app.use('/subscription', subscriptionRouter);
+  app.use('/api/v1/subscriptions', subscriptionRouter);
 
-  app.use('/campaign', campaignRouter);
+  app.use('/api/v1/campaigns', campaignRouter);
 }
 
 function useCustomRoute(route: string, router: Router) {
