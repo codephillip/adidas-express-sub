@@ -34,7 +34,10 @@
     "pg-hstore": "^2.3.3",
     "swagger-ui-express": "^4.1.6",
     "tslib": "^2.2.0",
-    "typeorm": "^0.2.34"
+    "typeorm": "^0.2.34",
+    "tsc-alias": "^1.2.11",
+    "ts-node": "^10.0.0",
+    "typescript": "4.1.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.14.2",
