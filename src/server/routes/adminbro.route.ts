@@ -4,7 +4,7 @@ import { subscriptionGenderChoices } from '../utils/constants/fieldChoices';
 
 const initializeAdminBroRoutes = () =>
   new AdminBro({
-    rootPath: '/admin',
+    rootPath: '/api/' + process.env.API_VERSION + '/subscriptionAdmin',
     resources: [
       {
         resource: Subscription,
