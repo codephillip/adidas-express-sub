@@ -5,7 +5,7 @@ const subscriptionValidation = {
   getAll: {
     query: Joi.object({
       id: Joi.string().uuid({ version: ['uuidv4'] }),
-      email: Joi.string().max(255),
+      email: Joi.string().email(),
       firstName: Joi.string().max(255),
       gender: Joi.string()
         .valid(...subscriptionGenderChoices)
@@ -20,7 +20,7 @@ const subscriptionValidation = {
       campaign: Joi.string()
         .uuid({ version: ['uuidv4'] })
         .required(),
-      email: Joi.string().max(255).required(),
+      email: Joi.string().email().required(),
       firstName: Joi.string().max(255),
       gender: Joi.string()
         .valid(...subscriptionGenderChoices)
@@ -37,7 +37,7 @@ const subscriptionValidation = {
         .required(),
     }),
     body: Joi.object({
-      email: Joi.string().max(255).required(),
+      email: Joi.string().email().required(),
       firstName: Joi.string().max(255).required(),
       gender: Joi.string()
         .valid(...subscriptionGenderChoices)
@@ -58,7 +58,7 @@ const subscriptionValidation = {
         .required(),
     }),
     body: Joi.object({
-      email: Joi.string().max(255),
+      email: Joi.string().email(),
       firstName: Joi.string().max(255),
       gender: Joi.string()
         .valid(...subscriptionGenderChoices)

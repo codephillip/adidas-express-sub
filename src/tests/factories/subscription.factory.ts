@@ -12,7 +12,7 @@ interface SubscriptionRelations {
 async function buildSubscription(subscription: SubscriptionRelations): Promise<Subscription> {
   const resSubscription = new Subscription();
 
-  resSubscription.email = random.word().slice(0, 255);
+  resSubscription.email = random.word().slice(0, 255) + "@example.com";
   resSubscription.firstName = random.word().slice(0, 255);
   resSubscription.gender = getRandomValueFromArray(subscriptionGenderChoices);
   resSubscription.dob = new Date(dateToUTC(date.past()).format('YYYY-MM-DD'));
