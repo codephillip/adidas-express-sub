@@ -7,8 +7,7 @@ services:
       - 8000
     depends_on:
       - database
-    command: sh -c "yarn typeorm migration:run --config .prod.env && yarn start" 
-    
+    command: sh -c "npm run typeorm migration:run --config .prod.env && npm run start"
   database:
     image: postgres
     hostname: database

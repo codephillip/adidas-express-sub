@@ -1,18 +1,15 @@
-FROM node:16.0-slim
-
-# Create app directory
+FROM node:17.0.1-slim as builder
 WORKDIR /usr/src/app
-
-# Install app dependencies
 COPY package.json ./
+RUN npm set progress=false && npm config set depth 0
+RUN npm install --only=production
+RUN cp -R node_modules prod_node_modules
 
-# Bundle app source
+
+FROM node:17.0.1-slim as app
+WORKDIR /usr/src/app
+COPY --from=builder /usr/src/app/prod_node_modules ./node_modules
 COPY . .
-
-
-RUN yarn install
-RUN yarn build
-
-EXPOSE 8000
+CMD ["npm", "start"]
 
 

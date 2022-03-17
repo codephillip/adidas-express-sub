@@ -1,15 +1,15 @@
 {
   "name": "adidas_express_sub-rest",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build-ts": "tsc && tsc-alias",
-    "build": "yarn run build-ts",
-    "debug": "yarn run build-ts && yarn run serve-debug",
+    "build": "npm run build-ts",
+    "debug": "npm run build-ts && npm run serve-debug",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "serve-debug": "concurrently \"tsc -w\" \"tsc-alias -w\" \"nodemon --inspect dist/server/index.js\"",
     "serve": "node dist/server/index.js",
-    "start": "yarn run build && NODE_ENV=production yarn run serve",
+    "start": "npm run build && NODE_ENV=production npm run serve",
     "test": "NODE_ENV=test jest --runInBand --verbose --passWithNoTests",
     "coverage": "NODE_ENV=test jest --runInBand --verbose --collect-coverage --passWithNoTests",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
