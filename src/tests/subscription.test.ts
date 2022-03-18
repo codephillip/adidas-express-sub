@@ -93,7 +93,9 @@ describe('Subscription tests', () => {
     expect(data.email).toBe(fakeSubscription.email);
     expect(data.firstName).toBe(fakeSubscription.firstName);
     expect(data.gender).toBe(fakeSubscription.gender);
-    // expect(dayjs(data.dob, 'YYYY-MM-DD').utc().format()).toBe(fakeSubscription.dob);
+    expect(dayjs(data.dob).format('YYYY-MM-DD')).toBe(
+      dayjs(fakeSubscription.dob).format('YYYY-MM-DD'),
+    );
     expect(data.consented).toBe(fakeSubscription.consented);
     expect(new Date(data.createdAt)).toStrictEqual(fakeSubscription.createdAt);
 
