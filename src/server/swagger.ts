@@ -141,7 +141,7 @@ const swaggerDocument = {
       },
     },
 
-    '/api/v1/campaigns/': {
+    '/campaigns/': {
       get: {
         summary: 'Lists all the campaigns',
         tags: ['campaign'],

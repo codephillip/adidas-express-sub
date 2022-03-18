@@ -3,6 +3,8 @@ import { CREATED } from 'http-status';
 import { Campaign } from 'data/models';
 import { SubscriptionService, CampaignService } from 'server/services';
 import { NotFound } from 'server/utils/errors';
+import {SubscriptionCreatedEventPublisher} from "../../events/subscriptionCreatedEventPublisher";
+import {natsWrapper} from "@adidastest-phillip/common";
 
 export default class SubscriptionController {
   static async runServiceAction(req: Request, serviceAction: Function) {
@@ -45,6 +47,15 @@ export default class SubscriptionController {
         req,
         SubscriptionService.create,
       );
+      new SubscriptionCreatedEventPublisher(natsWrapper.client).publish({
+        id: newSubscription.id,
+        email: newSubscription.email,
+        firstName: newSubscription.firstName,
+        gender: newSubscription.gender,
+        dob: newSubscription.dob,
+        consented: newSubscription.consented,
+        createdAt: newSubscription.createdAt,
+      });
       res.locals.status = CREATED;
       res.locals.data = newSubscription;
       return next();
