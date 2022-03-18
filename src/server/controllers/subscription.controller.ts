@@ -3,8 +3,9 @@ import { CREATED } from 'http-status';
 import { Campaign } from 'data/models';
 import { SubscriptionService, CampaignService } from 'server/services';
 import { NotFound } from 'server/utils/errors';
-import {SubscriptionCreatedEventPublisher} from "../../events/subscriptionCreatedEventPublisher";
-import {natsWrapper} from "@adidastest-phillip/common";
+import { natsWrapper } from '@adidastest-phillip/common';
+import { SubscriptionCreatedEventPublisher } from '../../events/subscriptionCreatedEventPublisher';
+import { SubscriptionCancelledEventPublisher } from '../../events/subscriptionCancelledEventPublisher';
 
 export default class SubscriptionController {
   static async runServiceAction(req: Request, serviceAction: Function) {
@@ -120,9 +121,19 @@ export default class SubscriptionController {
   static async destroy(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const subscriptionDelete = await SubscriptionService.destroy(id);
-      res.locals.data = subscriptionDelete;
-
+      const subscriptionObject = await SubscriptionService.get(id);
+      await new SubscriptionCancelledEventPublisher(natsWrapper.client).publish({
+        id: subscriptionObject.id,
+        email: subscriptionObject.email,
+        firstName: subscriptionObject.firstName,
+        gender: subscriptionObject.gender,
+        dob: subscriptionObject.dob,
+        consented: subscriptionObject.consented,
+        createdAt: subscriptionObject.createdAt,
+      });
+      // To delete or flag it as cancelled needs clarification from the business analysts.
+      // As it stands, I will delete it entirely
+      res.locals.data = await SubscriptionService.destroy(id);
       return next();
     } catch (error) {
       return next(error);
