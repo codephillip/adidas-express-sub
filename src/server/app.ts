@@ -18,6 +18,7 @@ import {
 const app = express();
 
 function setUpAPIRoutes() {
+  process.env.API_VERSION = process.env.API_VERSION !== undefined ? process.env.API_VERSION : 'v1';
   // Swagger
   app.use('/api/v1/subscriptionSwagger', swaggerUi.serveFiles(swaggerDocument), swaggerUi.setup(swaggerDocument));
 
@@ -29,9 +30,9 @@ function setUpAPIRoutes() {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(initResLocalsHandler);
 
-  app.use('/api/v1/subscriptions', subscriptionRouter);
+  app.use(`/api/${process.env.API_VERSION}/subscriptions`, subscriptionRouter);
 
-  app.use('/api/v1/campaigns', campaignRouter);
+  app.use(`/api/${process.env.API_VERSION}/campaigns`, campaignRouter);
 }
 
 function useCustomRoute(route: string, router: Router) {

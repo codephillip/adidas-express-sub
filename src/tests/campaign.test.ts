@@ -11,6 +11,7 @@ describe('Campaign tests', () => {
   beforeAll(async () => {
     await Database.startDatabase();
     setUpRoutesAndMiddlewares();
+    process.env.NODE_ENV = 'v1';
   });
 
   afterAll(async () => {
