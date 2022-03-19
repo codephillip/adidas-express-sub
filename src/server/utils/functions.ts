@@ -19,4 +19,20 @@ const getRandomValueFromArray = <Type>(arr: Type[]) => arr[Math.floor(Math.rando
 
 const dateToUTC = (date: Date) => dayjs.utc(date);
 
-export { createErrorResponse, createSuccessResponse, getRandomValueFromArray, dateToUTC };
+const getAge = birthDate => {
+  const now = new Date();
+  const isLeap = year => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+
+  let days = Math.floor((now.getTime() - birthDate.getTime()) / 1000 / 60 / 60 / 24);
+  let age = 0;
+  for (let y = birthDate.getFullYear(); y <= now.getFullYear(); y++) {
+    const daysInYear = isLeap(y) ? 366 : 365;
+    if (days >= daysInYear) {
+      days -= daysInYear;
+      age++;
+    }
+  }
+  return age;
+};
+
+export { createErrorResponse, createSuccessResponse, getRandomValueFromArray, dateToUTC, getAge };

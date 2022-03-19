@@ -4,6 +4,7 @@ import { Campaign } from 'data/models';
 import { SubscriptionService, CampaignService } from 'server/services';
 import { NotFound } from 'server/utils/errors';
 import { natsWrapper } from '@adidastest-phillip/common';
+import { getAge } from 'server/utils/functions';
 import { SubscriptionCreatedEventPublisher } from '../../events/subscriptionCreatedEventPublisher';
 import { SubscriptionCancelledEventPublisher } from '../../events/subscriptionCancelledEventPublisher';
 
@@ -19,6 +20,13 @@ export default class SubscriptionController {
         throw new NotFound(`Campaign ${campaign} not found`);
       }
     }
+
+    if (dob !== null && typeof dob !== 'undefined') {
+      if (getAge(new Date(dob)) < 6 || getAge(new Date(dob)) > 130) {
+        throw new NotFound('Access to minors is restricted');
+      }
+    }
+
     if (id !== undefined) {
       return serviceAction({
         id,
