@@ -13,7 +13,7 @@ import { subscriptionGenderChoices } from '../../server/utils/constants/fieldCho
 import Campaign from './campaign.model';
 
 @Entity()
-@Unique(['email'])
+@Unique('singleSubRec', ['email', 'campaign'])
 export default class Subscription extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
