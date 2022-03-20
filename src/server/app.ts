@@ -20,7 +20,11 @@ const app = express();
 function setUpAPIRoutes() {
   process.env.API_VERSION = process.env.API_VERSION !== undefined ? process.env.API_VERSION : 'v1';
   // Swagger
-  app.use('/api/v1/subscriptionSwagger', swaggerUi.serveFiles(swaggerDocument), swaggerUi.setup(swaggerDocument));
+  app.use(
+    `/api/${process.env.API_VERSION}/subscriptionSwagger`,
+    swaggerUi.serveFiles(swaggerDocument),
+    swaggerUi.setup(swaggerDocument),
+  );
 
   // Middlewares
   app.use(logger('dev'));
