@@ -1,5 +1,7 @@
 # adidas_express_sub app
 
+[![codecov](https://codecov.io/gh/codephillip/adidas-express-sub/branch/main/graph/badge.svg?token=7PAP1MUBC5)](https://codecov.io/gh/codephillip/adidas-express-sub)
+
 ### Run the app in terminal
 1. Start a Postgres database server on your machine or in the cloud.
 2. Set the following environment variables in your .env file
