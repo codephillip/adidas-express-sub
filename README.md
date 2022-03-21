@@ -1,5 +1,7 @@
 # adidas_express_sub app
 
+[![Build Status](https://app.travis-ci.com/codephillip/adidas-express-sub.svg?branch=main)](https://app.travis-ci.com/codephillip/adidas-express-sub)
+
 [![codecov](https://codecov.io/gh/codephillip/adidas-express-sub/branch/main/graph/badge.svg?token=7PAP1MUBC5)](https://codecov.io/gh/codephillip/adidas-express-sub)
 
 ### Run the app in terminal
